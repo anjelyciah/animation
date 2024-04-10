@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easing Demo</title>
+  <style>
+    /* Styles pour la démo */
+    .penner-equations-demo {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .el {
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: rgb(250, 0, 217);
+    }
+  </style>
+</head>
+<body>
+
+<div class="penner-equations-demo"></div>
+
+<!-- Chargement de la bibliothèque Anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<script>
+  // Nom complet à animer
+  var fullName = "RAVOLATSARA ONITRINIAINA ANJELYCIA";
+
+  // Liste des noms de fonctions d'interpolation
+  var easingNames = [
+    'easeInQuad',
+    'easeInCubic',
+    'easeInQuart',
+    'easeInQuint',
+    'easeInSine',
+    'easeInExpo',
+    'easeInCirc',
+    'easeInBack',
+    'easeOutQuad',
+    'easeOutCubic',
+    'easeOutQuart',
+    'easeOutQuint',
+    'easeOutSine',
+    'easeOutExpo',
+    'easeOutCirc',
+    'easeOutBack',
+    'easeInBounce',
+    'easeInOutQuad',
+    'easeInOutCubic',
+    'easeInOutQuart',
+    'easeInOutQuint',
+    'easeInOutSine',
+    'easeInOutExpo',
+    'easeInOutCirc',
+    'easeInOutBack',
+    'easeInOutBounce',
+    'easeOutBounce',
+    'easeOutInQuad',
+    'easeOutInCubic',
+    'easeOutInQuart',
+    'easeOutInQuint',
+    'easeOutInSine',
+    'easeOutInExpo',
+    'easeOutInCirc',
+    'easeOutInBack',
+    'easeOutInBounce'
+  ];
+
+  // Fonction pour créer chaque élément de démonstration avec l'animation correspondante
+  function createEasingDemo(letter, easing) {
+    var demoEl = document.createElement('div');
+    demoEl.classList.add('el', 'square', 'stretched', 'easing-' + easing);
+    demoEl.innerText = letter;
+    anime({
+      targets: demoEl,
+      translateY: [50, -50],
+      direction: 'alternate',
+      loop: true,
+      delay: 100,
+      endDelay: 100,
+      duration: 1000,
+      easing: easing
+    });
+    document.querySelector('.penner-equations-demo').appendChild(demoEl);
+  }
+
+  // Création de chaque élément de démonstration
+  for (var i = 0; i < fullName.length; i++) {
+    createEasingDemo(fullName[i], easingNames[i % easingNames.length]);
+  }
+</script>
+
+</body>
+</html>
